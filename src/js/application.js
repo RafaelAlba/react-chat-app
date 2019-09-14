@@ -11,6 +11,21 @@ const DUMMY_DATA = [
     id: 2,
     senderId: 'janedoe',
     text: 'who\'ll win?'
+  },
+  {
+    id: 3,
+    senderId: 'janedoe',
+    text: 'who\'ll win?'
+  },
+  {
+    id: 4,
+    senderId: 'janedoe',
+    text: 'who\'ll win?'
+  },
+  {
+    id: 5,
+    senderId: 'janedoe',
+    text: 'who\'ll win?'
   }
 ]
 

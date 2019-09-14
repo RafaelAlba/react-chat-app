@@ -1,0 +1,7 @@
+[
+  { "username": "perborgen", "content": "hi janedoe", "sent":{$date:"2019-09-14T00:20:00Z"} },
+  { "username": "janedoe", "content": "hi perborgen", "sent":{$date:"2019-09-14T00:20:00Z"} },
+  { "username": "perborgen", "content": "how are you doing?", "sent":{$date:"2019-09-14T00:20:00Z"}},
+  { "username": "janedoe", "content": "I'm doing well, how are you?", "sent":{$date:"2019-09-14T00:20:00Z"} },
+  { "username": "janedoe", "content": "I'm doing well as well, thank you!", "sent":{$date:"2019-09-14T00:20:00Z"} }
+]

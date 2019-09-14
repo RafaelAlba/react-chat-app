@@ -1,5 +1,16 @@
 version: '2'
 services:
+  mongodbhost:
+    image: mongo:3.3.5
+
+  init-mongodbhost:
+    image: mongo:3.3.5
+    links:
+      - mongodbhost
+    volumes:
+      - ./fixtures:/fixtures
+    command: sh -c "timeout 5 bash -c '</dev/tcp/mongodbhost/27017' 2>/dev/null && (mongoimport --host mongodbhost --type json --db react --collection messages --file /fixtures/messages.json --jsonArray) || echo 'mongodbhost failed to start!!!!!'"
+
   web:
     build: .
     command: ./entrypoint.sh
@@ -7,3 +18,5 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
+    links:
+      - mongodbhost
