@@ -1,8 +1,12 @@
 'use strict';
 
-var Path = require('path');
-var Hapi = require('hapi');
-var server = new Hapi.Server({
+const Path = require('path');
+const Hapi = require('hapi');
+const Message = require('./src/models/message');
+const mongoose = require('mongoose');
+
+
+const server = new Hapi.Server({
   connections: {
     routes: {
       files: {
@@ -12,10 +16,12 @@ var server = new Hapi.Server({
   }
 });
 
+
 server.connection({
     host: '0.0.0.0',
     port: process.env['PORT']
 });
+
 
 server.register(
   [
@@ -56,6 +62,7 @@ server.views({
   layout: false
 });
 
+
 server.route({
   method: 'GET',
   path: '/{param*}',
@@ -68,6 +75,7 @@ server.route({
   }
 });
 
+
 server.route({
   method: 'GET',
   path: '/',
@@ -76,6 +84,7 @@ server.route({
   }
 });
 
+
 server.route({
   method: 'GET',
   path: '/blog',
@@ -83,6 +92,24 @@ server.route({
     return reply.view('blog')
   }
 });
+
+
+server.route({
+  method: 'GET',
+  path: '/messages',
+  handler: function (req, reply) {
+    Message.find({}, function(err, messages){
+      if (err) {
+        reply(err)
+      }
+
+      reply(messages)
+    });
+  }
+});
+
+
+mongoose.connect('mongodb://mongodbhost/react');
 
 server.start(function(err) {
   if (err) {

@@ -37,6 +37,22 @@ class ChatApp extends React.Component {
     }
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000/messages').then(result => {
+      return result.json()
+    }).then(messages => {
+      this.setState({
+        messages: messages.map(message => {
+          return {
+            id: message.sent,
+            senderId: message.username,
+            text: message.content
+          }
+        })
+      })
+    })
+  }
+
   render () {
     return (
       <div className='app'>
